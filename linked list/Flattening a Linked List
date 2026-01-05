@@ -1,0 +1,47 @@
+// Problem: Flattening a Linked List
+// Platform: GFG
+// Approach: recurison
+// Time Complexity: O(2*n*m)
+// Space Complexity: O(n)
+
+
+class Solution {
+  public:
+  Node* merge2list(Node* temp,Node *t2){
+     
+    
+    Node* dummynode=new Node(-1);
+   Node*  res=dummynode;
+     while(temp!=NULL&& t2!=NULL){
+         if(temp->data<t2->data){
+             res->bottom=temp;
+              res=temp;
+             temp=temp->bottom;
+            
+             
+         }
+         else{
+             res->bottom=t2;
+             res=t2;
+             t2=t2->bottom;
+             
+         }
+         res->next=nullptr;
+      
+         
+     }
+        
+         if(temp) res->bottom=temp;
+         else  res->bottom=t2;
+     return dummynode->bottom;
+  }
+  
+    Node *flatten(Node *head) {
+        if(head==NULL || head->next ==NULL ){
+            return head;
+         }
+        
+        Node*  mergehead=flatten(head->next);
+        return merge2list(head,mergehead);
+    }
+};

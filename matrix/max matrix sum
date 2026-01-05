@@ -1,0 +1,25 @@
+// Problem: Max matrix sum
+// Platform: Leetcode
+// Time Complexity: O(n*m)
+// Space Complexity: O(1)
+
+class Solution {
+public:
+    long long maxMatrixSum(vector<vector<int>>& matrix) {
+        long long sum=0;
+        int neg=0;
+        int minabs=INT_MAX;
+        for(auto &row : matrix){
+            for(int x: row){
+                if(x<0) neg++;
+                sum+=abs(x);
+                minabs=min(minabs,abs(x));
+            }
+         
+        }
+           if(neg%2==1){
+                sum-=2*minabs;
+            }
+        return sum;
+    }
+};

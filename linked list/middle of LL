@@ -1,0 +1,22 @@
+// Problem: middle of LL
+// Platform: Leetcode
+// Approach: fast & slow pointer
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* fast=head;
+        ListNode* slow=head;
+
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+        
+    }
+};

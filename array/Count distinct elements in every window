@@ -1,0 +1,27 @@
+// Problem: Count distinct elements in every window
+// Platform: GFG
+// Approach: hash map & sliding window
+// Time Complexity: O(n)
+// Space Complexity: O(k)
+
+class Solution {
+  public:
+    vector<int> countDistinct(vector<int> &arr, int k) {
+        // code here
+        vector<int>result;
+        map<int,int>mpp;
+        for(int i=0;i<k;i++){
+            mpp[arr[i]]++;
+        }
+        result.push_back(mpp.size());
+        for(int i=k;i<arr.size();i++){
+            mpp[arr[i-k]]--;
+            if(mpp[arr[i-k]]==0){
+                mpp.erase(arr[i-k]);
+            }
+            mpp[arr[i]]++;
+            result.push_back(mpp.size());
+        }
+        return result;
+    }
+};

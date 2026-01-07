@@ -1,0 +1,48 @@
+// Problem: max product of splitted binary tree
+// Platform: Leetcode
+// Approach: DFS
+// Time Complexity: O(n)
+// Space Complexity: O(n log n)
+
+class Solution {
+public:
+    long long totalSum = 0;
+    long long ans = 0;
+    const int MOD = 1e9 + 7;
+    
+
+    // DFS to calculate subtree sums and max product
+    long long dfs(TreeNode* root) {
+        if (!root) return 0;
+
+        long long left = dfs(root->left);
+        long long right = dfs(root->right);
+
+        long long subSum = root->val + left + right;
+
+        // assume edge above this node is removed
+        long long product = subSum * (totalSum - subSum);
+        ans = max(ans, product);
+
+        return subSum;
+    }
+     // helper to get total sum
+    long long dfsTotal(TreeNode* root) {
+        if (!root) return 0;
+        return root->val + dfsTotal(root->left) + dfsTotal(root->right);
+    }
+
+    int maxProduct(TreeNode* root) {
+        // Step 1: calculate total sum of tree
+        totalSum = dfsTotal(root);
+
+        // Step 2: calculate maximum product
+        dfs(root);
+
+        // Step 3: return result modulo
+        return ans % MOD;
+    }
+
+
+   
+};

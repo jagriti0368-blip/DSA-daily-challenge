@@ -1,0 +1,24 @@
+
+// Problem: remove duplicates from sorted array
+// Platform: Leetcode
+// Approach: two pointer
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int i=0;
+        
+        for(int k=1;k<nums.size();k++){
+            if(nums[k]!=nums[i]){
+                i++;
+                nums[i]=nums[k];
+                
+            }
+          
+        }
+        return i+1;
+        
+    }
+};

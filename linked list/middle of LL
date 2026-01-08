@@ -1,4 +1,5 @@
 // Problem: middle of LL
+// if no. of nodes is even then there there are 2 middle .so, take m2 as middle of LL
 // Platform: Leetcode
 // Approach: fast & slow pointer
 // Time Complexity: O(n)

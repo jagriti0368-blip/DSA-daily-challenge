@@ -1,0 +1,41 @@
+// Problem: implement stack using queue
+// Platform: Leetcode
+// Time Complexity: Push O(n)
+                    Pop O(1)
+                    Top O(1)
+                    Empty O(1)
+// Space Complexity: O(n)
+
+class MyStack {
+    queue<int>q;
+
+public:
+    MyStack() {
+        
+    }
+    
+    void push(int x) {
+        int sz=q.size();
+        q.push(x);
+          
+        for(int i=0;i<sz;i++){
+            q.push(q.front());
+            q.pop();
+        }
+  
+    }
+    
+    int pop() {
+        int val = q.front();
+        q.pop();
+        return val;
+    }
+    
+    int top() {
+        return q.front();
+    }
+    
+    bool empty() {
+        return q.empty();
+    }
+};

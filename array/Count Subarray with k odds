@@ -1,0 +1,39 @@
+// Problem: Count Subarray with k odds
+// Platform: GFG
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+
+class Solution {
+public:
+    int countSubarrays(vector<int>& arr, int k) {
+        int left = 0;
+        int oddCount = 0;
+        int count = 0;
+        int prefixEven = 0;
+
+        for (int right = 0; right < arr.size(); right++) {
+
+            // expand window
+            if (arr[right] % 2 != 0) {
+                oddCount++;
+                prefixEven = 0;   
+            }
+
+           
+            while (oddCount > k) {
+                if (arr[left] % 2 != 0) oddCount--;
+                left++;
+            }
+
+            if (oddCount == k) {
+                while (left < arr.size() && arr[left] % 2 == 0) {
+                    prefixEven++;
+                    left++;
+                }
+                count += prefixEven + 1;
+            }
+        }
+        return count;
+    }
+};

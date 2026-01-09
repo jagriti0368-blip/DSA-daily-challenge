@@ -1,0 +1,30 @@
+// Problem: Subarrays With At Most K Distinct Integers
+// Platform: GFG
+// Time Complexity: O(n)
+// Space Complexity: O(K)
+
+class Solution {
+public:
+    long long countAtMostK(vector<int>& arr, int k) {
+        unordered_map<int, int> freq;
+        long long ans = 0;
+        int left = 0;
+
+        for (int right = 0; right < arr.size(); right++) {
+            freq[arr[right]]++;
+
+            // shrink window if distinct elements > k
+            while (freq.size() > k) {
+                freq[arr[left]]--;
+                if (freq[arr[left]] == 0)
+                    freq.erase(arr[left]);
+                left++;
+            }
+
+            // count subarrays ending at right
+            ans += (right - left + 1);
+        }
+
+        return ans;
+    }
+};

@@ -1,0 +1,31 @@
+// Problem: smallest subtree with all the deepest node
+// Platform: leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(H)
+
+
+
+
+class Solution {
+public:
+    pair<int, TreeNode*> dfs(TreeNode* root) {
+        if (!root) return {0, nullptr};
+
+        auto left = dfs(root->left);
+        auto right = dfs(root->right);
+
+        if (left.first > right.first) {
+            return {left.first + 1, left.second};
+        }
+        if (right.first > left.first) {
+            return {right.first + 1, right.second};
+        }
+
+        // equal depth → current node is LCA
+        return {left.first + 1, root};
+    }
+
+    TreeNode* subtreeWithAllDeepest(TreeNode* root) {
+        return dfs(root).second;
+    }
+};

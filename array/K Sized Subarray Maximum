@@ -1,0 +1,39 @@
+// Problem: K Sized Subarray Maximum (not an optimal sol.)
+// Platform: GFG
+// Approach: sliding window
+// Time Complexity: O(n log k)
+// Space Complexity: O(k)
+
+class Solution {
+  public:
+    vector<int> maxOfSubarrays(vector<int>& arr, int k) {
+        // code here
+        int right=0;
+        int left=0;
+        map<int,int>mpp;
+        vector<int>ans;
+     
+        for(int right=0;right<k;right++){
+            
+            mpp[arr[right]]++;
+            
+        }
+        ans.push_back(mpp.rbegin()->first);
+        
+        
+        for(int right=k; right<arr.size();right++){
+            mpp[arr[right]]++;
+            mpp[arr[left]]--;
+            if(mpp[arr[left]]==0){
+                mpp.erase(arr[left]);}
+            left++;
+             
+            ans.push_back(mpp.rbegin()->first);
+            }
+
+            
+         return ans;   
+           
+        }
+    
+};

@@ -1,0 +1,40 @@
+// Problem: Police and Thieves
+// Platform: GFG
+// Approach: 2 pointer
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+class Solution {
+public:
+    int catchThieves(vector<char>& arr, int k) {
+        vector<int> police, thief;
+        int n = arr.size();
+
+        // store indices
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == 'P')
+                police.push_back(i);
+            else
+                thief.push_back(i);
+        }
+
+        int i = 0, j = 0;
+        int caught = 0;
+
+        // greedy two-pointer matching
+        while (i < police.size() && j < thief.size()) {
+            if (abs(police[i] - thief[j]) <= k) {
+                caught++;
+                i++;
+                j++;
+            }
+            else if (thief[j] < police[i]) {
+                j++;
+            }
+            else {
+                i++;
+            }
+        }
+        return caught;
+    }
+};

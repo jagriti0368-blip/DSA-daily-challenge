@@ -14,11 +14,11 @@ class Solution {
                 t1=t1->next;
                 t2=t2->next;
                 if(t1 == t2) return t1;
-                if(t1 == NULL){
-                    t1=head2;
+                if(t1 == NULL){ 
+                    t1=head2;   //main logic
                 }
                 if(t2 == NULL){
-                    t2=head1;
+                    t2=head1;   //main logic
                 }
                 
             }

@@ -1,0 +1,20 @@
+// Problem: count nodes in BT
+// Platform: leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(h)
+
+
+
+class Solution {
+public:
+    
+    int countNodes(TreeNode* root) {
+        TreeNode* node=root;
+       
+        if(root == NULL) return 0;
+        int left=countNodes(node->left);
+        int right=countNodes(node->right);
+        return left+right+1;
+    }
+
+};

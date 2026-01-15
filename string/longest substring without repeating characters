@@ -10,7 +10,7 @@ public:
         int r=0;
         int maxlen=0;
         int hash[256];
-        fill(hash,hash+256,-1);
+        fill(hash,hash+256,-1);    //this fill -1 in all the indexes of string
         int n=s.size();
         if(n==0) return 0;
         while(r<n){

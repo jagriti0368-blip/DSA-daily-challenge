@@ -1,0 +1,46 @@
+// Problem: Minimum Number of Workers
+// Platform: GFG
+// Time Complexity: O(n log n)
+// Space Complexity: O(n)
+
+class Solution {
+  public:
+    int minMen(vector<int>& arr) {
+        int n = arr.size();
+        vector<pair<int,int>> intervals;
+
+        // Step 1: Build intervals
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != -1) {
+                int l = max(0, i - arr[i]);
+                int r = min(n - 1, i + arr[i]);
+                intervals.push_back({l, r});
+            }
+        }
+
+        // Step 2: Sort by start
+        sort(intervals.begin(), intervals.end());
+
+        int men = 0;
+        int pos = 0;
+        int i = 0;
+
+        // Step 3: Greedy cover
+        while (pos < n) {
+            int farthest = -1;
+
+            while (i < intervals.size() && intervals[i].first <= pos) {
+                farthest = max(farthest, intervals[i].second);
+                i++;
+            }
+
+            // gap found
+            if (farthest < pos) return -1;
+
+            men++;
+            pos = farthest + 1;
+        }
+
+        return men;
+    }
+};

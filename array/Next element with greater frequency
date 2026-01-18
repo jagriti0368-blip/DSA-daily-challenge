@@ -1,0 +1,40 @@
+// Problem: Next element with greater frequency
+// Platform: GFG
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+
+class Solution {
+  public:
+    vector<int> nextFreqGreater(vector<int>& arr) {
+    int n = arr.size();
+
+    unordered_map<int, int> freq;
+    for (int x:arr) {
+        freq[x]++;
+    }
+
+    vector<int> ans(n, -1);
+    stack<int> st; // stack stores indices
+
+    // traverse from right to left
+    for (int i = n - 1; i >= 0; i--) {
+
+        // pop elements with freq <= current
+        while (!st.empty() &&
+               freq[arr[st.top()]] <= freq[arr[i]]) {
+            st.pop();
+        }
+
+        // top of stack is next greater frequency element
+        if (!st.empty()) {
+            ans[i] = arr[st.top()];
+        }
+
+        // push current index
+        st.push(i);
+    }
+
+    return ans;
+    }
+};

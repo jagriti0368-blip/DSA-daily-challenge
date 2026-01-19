@@ -14,7 +14,7 @@ public:
 
         for (int right = 0; right < arr.size(); right++) {
 
-            // expand window
+            // expand sliding window
             if (arr[right] % 2 != 0) {
                 oddCount++;
                 prefixEven = 0;   

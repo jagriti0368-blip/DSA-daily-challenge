@@ -1,0 +1,47 @@
+// Problem: Remove K Digits
+// Platform: GFG
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+class Solution {
+  public:
+    string removeKdig(string &s, int k) {
+        // code here
+        stack<char>st;
+        for(char i:s){
+            while(!st.empty() && k>0 && st.top()>i){
+                st.pop();
+                k--;
+            }
+            st.push(i);
+        }
+           // agar k abhi bhi bacha ho uske liye
+        while (k > 0 && !st.empty()) {
+            st.pop();
+            k--;
+        }
+        
+        string ans="";
+        while(!st.empty()){
+            ans+=st.top();
+            st.pop();
+        }
+        reverse(ans.begin(),ans.end());
+        
+        
+        int i=0;
+        while(i<ans.size() && ans[i]=='0'){
+            
+            i++;
+            
+        }
+        ans=ans.substr(i);
+        
+      return ans.empty() ? "0" : ans; 
+        
+        
+    
+        
+       
+    }
+};

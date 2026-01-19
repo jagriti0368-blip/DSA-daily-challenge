@@ -1,0 +1,41 @@
+// Problem:swap nodes in pair
+// Platform: leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+
+
+
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+       
+        if (head == NULL || head->next == NULL)
+            return head;
+
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+
+        
+        head = head->next;
+
+        while (curr && curr->next) {
+            ListNode* nextPair = curr->next->next;
+            ListNode* second = curr->next;
+
+            // swap
+            second->next = curr;
+            curr->next = nextPair;
+
+           
+            if (prev != NULL)
+                prev->next = second;
+
+            // pointers move
+            prev = curr;
+            curr = nextPair;
+        }
+
+        return head;
+    }
+};

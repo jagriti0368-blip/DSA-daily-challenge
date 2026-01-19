@@ -1,0 +1,22 @@
+// Problem:swap nodes in pair
+// Platform: leetcode
+// Approach: using recursion
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+         if (head == NULL || head->next == NULL)
+            return head;
+        
+        ListNode* temp2=head->next;
+        head->next=swapPairs(temp2->next);
+       
+        temp2->next=head;
+
+        return temp2;
+        
+    }
+};

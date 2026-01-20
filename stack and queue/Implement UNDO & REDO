@@ -1,0 +1,54 @@
+// Problem: Implement UNDO & REDO
+// Platform: GFG
+// Approach: stack
+// Time Complexity: O(n)| Operation | Time | Extra Space |
+| --------- | ---- | ----------- |
+| append    | O(1) | O(1)        |
+| undo      | O(1) | O(1)        |
+| redo      | O(1) | O(1)        |
+| read      | O(n) | O(n)        |
+
+class Solution {
+  public:
+  stack<int>st;
+  stack<int>st2;
+  string s;
+    void append(char x) {
+        // append x into document
+        st.push(x);
+        
+    }
+
+    void undo() {
+        // undo last change
+        if (!st.empty()){
+            
+        
+        st2.push(st.top());
+        st.pop();
+        }
+    }
+
+    void redo() {
+        // redo changes
+         if (!st2.empty()){
+             
+        st.push(st2.top());
+        st2.pop();
+         }
+    }
+
+    string read() {
+        // read the document
+        stack<int> temp = st;
+
+        s.clear();
+        while(!temp.empty()){
+             s.push_back(temp.top());
+             temp.pop();
+            
+        }
+        reverse(s.begin(),s.end());
+     return s;   
+    }
+};

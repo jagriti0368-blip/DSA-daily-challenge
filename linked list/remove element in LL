@@ -1,0 +1,33 @@
+// Problem:remove element in LL
+// Platform: leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        while(head!=nullptr && head->val == val) {
+            ListNode* t1=head;
+            head=head->next;
+            delete t1;
+
+        }
+            ListNode* temp=head;
+            while(temp!=NULL && temp->next!=NULL){
+            if(temp->next->val == val){
+                ListNode* deln=temp->next;
+                temp->next=temp->next->next;
+                
+                delete deln;
+            }
+            else{
+                temp=temp->next;
+
+            }
+        
+        }
+       return head; 
+    }
+
+};

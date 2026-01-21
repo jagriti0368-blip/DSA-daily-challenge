@@ -47,7 +47,7 @@ public:
         // reverse result
         Node* result = reverse(dummy->next);
 
-        //  REMOVE LEADING ZEROS
+        //  REMOVE LEADING ZEROS (aage ke 0 bhi hatane honge)
         while (result && result->data == 0 && result->next) {
             result = result->next;
         }

@@ -1,0 +1,29 @@
+// Problem: Detect Loop in linked list
+// Platform: GFG
+// Approach: slow and fast pointer
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+class Solution {
+  public:
+    bool detectLoop(Node* head) {
+        // code here
+        
+        Node* slow=head;
+        Node* fast=head;
+        if (head == NULL) return false;
+        while(fast!=NULL && fast->next!=NULL){
+            
+           
+        fast=fast->next->next;
+        slow=slow->next;
+        if(fast==slow){
+                return true;
+            }
+        
+        }
+       
+        return false;
+     
+    }
+};

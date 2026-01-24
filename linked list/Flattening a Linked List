@@ -1,7 +1,7 @@
 // Problem: Flattening a Linked List
 // Platform: GFG
 // Approach: recurison
-// Time Complexity: O(2*n*m)
+// Time Complexity: O(2*n*m)  have to use dummy nodes 
 // Space Complexity: O(n)
 
 

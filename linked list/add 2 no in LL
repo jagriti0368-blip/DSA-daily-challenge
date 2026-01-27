@@ -1,0 +1,54 @@
+// Problem:add 2 no in LL
+// Platform: leetcode
+// Approach: reverse LL
+// Time Complexity: O(n + m)
+// Space Complexity: O(1)
+
+class Solution {
+public:
+    
+    // function to reverse linked list
+    ListNode* reverse(ListNode* head) {
+        ListNode* prev = NULL;
+        while (head != NULL) {
+            ListNode* nextNode = head->next;
+            head->next = prev;
+            prev = head;
+            head = nextNode;
+        }
+        return prev;
+    }
+
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        // step 1: reverse both lists
+        l1 = reverse(l1);
+        l2 = reverse(l2);
+
+        int carry = 0;
+        ListNode* result = NULL;
+
+        // step 2: add digits
+        while (l1 != NULL || l2 != NULL || carry != 0) {
+            int sum = carry;
+
+            if (l1 != NULL) {
+                sum += l1->val;
+                l1 = l1->next;
+            }
+
+            if (l2 != NULL) {
+                sum += l2->val;
+                l2 = l2->next;
+            }
+
+            carry = sum / 10;
+
+            // insert at front
+            ListNode* newNode = new ListNode(sum % 10);
+            newNode->next = result;
+            result = newNode;
+        }
+
+        return result;
+    }
+};

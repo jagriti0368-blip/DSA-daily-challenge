@@ -1,0 +1,33 @@
+// Problem: Interleave the First Half of the Queue with Second Half
+// Platform: GFG
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+class Solution {
+  public:
+    void rearrangeQueue(queue<int> &q) {
+        int n = q.size();
+        int half = n / 2;
+        
+        // Store first half in a temporary queue
+        queue<int> firstHalf;
+        for (int i = 0; i < half; i++) {
+            firstHalf.push(q.front());
+            q.pop();
+        }
+        
+        // Now q contains only second half
+        // Interleave: take one from firstHalf, one from q (second half)
+        queue<int> result;
+        while (!firstHalf.empty()) {
+            result.push(firstHalf.front());
+            firstHalf.pop();
+            
+            result.push(q.front());
+            q.pop();
+        }
+        
+        // Copy result back to original queue
+        q = result;
+    }
+};

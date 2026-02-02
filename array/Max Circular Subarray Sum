@@ -1,0 +1,33 @@
+// Problem: Max Circular Subarray Sum
+// Platform: GFG
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+class Solution {
+  public:
+    int maxCircularSum(vector<int> &arr) {
+        int totalSum = 0;
+        
+        int currMax = 0, maxSum = arr[0];
+        int currMin = 0, minSum = arr[0];
+        
+        for (int x : arr) {
+            // Kadane for max subarray sum
+            currMax = max(x, currMax + x);
+            maxSum = max(maxSum, currMax);
+            
+            // Kadane for min subarray sum
+            currMin = min(x, currMin + x);
+            minSum = min(minSum, currMin);
+            
+            totalSum += x;
+        }
+        
+        // If all elements are negative
+        if (maxSum < 0)
+            return maxSum;
+        
+        // Max of non-wrapping and wrapping
+        return max(maxSum, totalSum - minSum);
+    }
+};

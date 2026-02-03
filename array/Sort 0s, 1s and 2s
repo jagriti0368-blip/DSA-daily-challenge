@@ -8,7 +8,7 @@ class Solution {
   public:
   
     void swap(int &a, int &b) {
-    int temp = a;
+    int temp = a;    // swapping using 3rd variable
     a = b;
     b = temp;
 }

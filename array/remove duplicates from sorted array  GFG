@@ -1,0 +1,20 @@
+// Problem: remove duplicates from sorted array
+// Platform: GFG
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+class Solution {
+  public:
+    vector<int> removeDuplicates(vector<int> &arr) {
+        // code here
+        int i=0;
+        for(int k=1;k<arr.size();k++){
+            if(arr[i]!=arr[k]){
+                i++;
+                arr[i]=arr[k];
+            }
+        }
+        arr.resize(i + 1);   // important
+        return arr;
+    }
+};

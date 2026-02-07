@@ -1,0 +1,24 @@
+// Problem:Array Duplicates
+// Platform: GFG
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+class Solution {
+  public:
+    vector<int> findDuplicates(vector<int>& arr) {
+        vector<int> ans;
+        int n = arr.size();
+
+        for (int i = 0; i < n; i++) {
+            int idx = abs(arr[i]) - 1;
+
+            if (arr[idx] < 0) {
+                ans.push_back(idx + 1);
+            } else {
+                arr[idx] = -arr[idx];
+            }
+        }
+
+        return ans;
+    }
+};

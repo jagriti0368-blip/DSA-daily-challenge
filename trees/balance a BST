@@ -1,0 +1,32 @@
+// Problem: balance a BST 
+// Platform: leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+
+
+class Solution {
+public:
+    vector<int> v;
+    
+    void inorder(TreeNode* root) {
+        if (!root) return;
+        inorder(root->left);
+        v.push_back(root->val);
+        inorder(root->right);
+    }
+    
+    TreeNode* build(int l, int r) {
+        if (l > r) return NULL;
+        int mid = (l + r) / 2;
+        TreeNode* node = new TreeNode(v[mid]);
+        node->left = build(l, mid - 1);
+        node->right = build(mid + 1, r);
+        return node;
+    }
+    
+    TreeNode* balanceBST(TreeNode* root) {
+        inorder(root);
+        return build(0, v.size() - 1);
+    }
+};

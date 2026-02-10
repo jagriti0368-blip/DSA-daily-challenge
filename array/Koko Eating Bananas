@@ -1,6 +1,6 @@
 // Problem: Koko Eating Bananas
 // Platform: GFG
-// Time Complexity: O(n log m) //n=array size
+// Time Complexity: O(n log m) //n=array size   m=max element in array
 // Space Complexity: O(1)
 
 class Solution {

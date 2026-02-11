@@ -1,0 +1,40 @@
+// Problem: Equalize the Towers
+// Platform: GFG
+// Time Complexity: O(n × log(max - min))
+// Space Complexity: O(1)
+
+class Solution {
+  public:
+    long long calculateCost(vector<int>& heights, vector<int>& cost, int target) {
+        long long totalCost = 0;
+        for (int i = 0; i < heights.size(); i++) {
+            totalCost += (long long)abs(heights[i] - target) * cost[i];
+        }
+        return totalCost;
+    }
+    
+    int minCost(vector<int>& heights, vector<int>& cost) {
+        int left = *min_element(heights.begin(), heights.end());
+        int right = *max_element(heights.begin(), heights.end());
+        
+        // Ternary search for minimum cost
+        while (right - left > 2) {
+            int mid1 = left + (right - left) / 3;
+            int mid2 = right - (right - left) / 3;
+            
+            if (calculateCost(heights, cost, mid1) > calculateCost(heights, cost, mid2)) {
+                left = mid1;
+            } else {
+                right = mid2;
+            }
+        }
+        
+        // Check remaining candidates
+        long long minCost = LLONG_MAX;
+        for (int target = left; target <= right; target++) {
+            minCost = min(minCost, calculateCost(heights, cost, target));
+        }
+        
+        return (int)minCost;
+    }
+};

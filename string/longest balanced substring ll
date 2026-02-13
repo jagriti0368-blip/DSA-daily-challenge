@@ -1,0 +1,70 @@
+// Problem: longest balanced substring ll
+// Platform: leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+class Solution {
+public:
+    int longestBalanced(string s) {
+        int n = s.size();
+        int ans = 1;  // FIXED (since n >= 1)
+
+        // ----- Case 1: Single character runs -----
+        int run = 1;
+        for (int i = 1; i < n; i++) {
+            if (s[i] == s[i - 1]) run++;
+            else run = 1;
+            ans = max(ans, run);
+        }
+
+        // Helper for Case 2
+        auto solveTwo = [&](char x, char y, char forbid) {
+            unordered_map<int, int> first;
+            first[0] = -1;
+            int diff = 0;
+
+            for (int i = 0; i < n; i++) {
+                if (s[i] == forbid) {
+                    first.clear();
+                    first[0] = i;
+                    diff = 0;
+                    continue;
+                }
+
+                if (s[i] == x) diff++;
+                if (s[i] == y) diff--;
+
+                if (first.count(diff))
+                    ans = max(ans, i - first[diff]);
+                else
+                    first[diff] = i;
+            }
+        };
+
+        // ----- Case 2 -----
+        solveTwo('a', 'b', 'c');
+        solveTwo('a', 'c', 'b');
+        solveTwo('b', 'c', 'a');
+
+        // ----- Case 3 -----
+        unordered_map<string, int> first;
+        first["0#0"] = -1;
+
+        int a = 0, b = 0, c = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (s[i] == 'a') a++;
+            if (s[i] == 'b') b++;
+            if (s[i] == 'c') c++;
+
+            string key = to_string(b - a) + "#" + to_string(c - a);
+
+            if (first.count(key))
+                ans = max(ans, i - first[key]);
+            else
+                first[key] = i;
+        }
+
+        return ans;
+    }
+};

@@ -1,0 +1,24 @@
+// Problem: palindrome no
+// Platform: leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+
+        // Negative numbers & trailing zero case
+        if (x < 0 || (x % 10 == 0 && x != 0))
+            return false;
+
+        int reversedHalf = 0;
+
+        while (x > reversedHalf) {
+            reversedHalf = reversedHalf * 10 + x % 10;
+            x /= 10;
+        }
+
+        // Handles even & odd length numbers
+        return (x == reversedHalf || x == reversedHalf / 10);
+    }
+};

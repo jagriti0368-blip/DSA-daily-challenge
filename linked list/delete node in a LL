@@ -1,4 +1,4 @@
-// Problem: delete node in a LL(solve without usinh head node)
+// Problem: delete node in a LL(solve without using head node)
 // Platform: Leetcode
 // Time Complexity: O(1)
 // Space Complexity: O(1)

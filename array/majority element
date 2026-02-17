@@ -1,4 +1,4 @@
-// Problem: majority element
+// Problem: majority element    >n/2 times
 // Platform: leetcode
 // Time Complexity: O(n)
 // Space Complexity: O(1)

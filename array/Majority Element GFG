@@ -1,0 +1,34 @@
+//problem:majority element
+//platform : GFG
+//time complexity : O(n)
+//space complexity : O(1)
+
+
+class Solution {
+public:
+    int majorityElement(vector<int>& arr) {
+
+        int el = arr[0];
+        int cnt = 0;          // 0 se hi start karenge
+
+        for(int i = 0; i < arr.size(); i++) {
+
+            if(cnt == 0) {    // candidate reset rule
+                el = arr[i];
+                cnt = 1;
+            }
+            else if(arr[i] == el) cnt++;
+            else cnt--;
+        }
+
+        // recount (mandatory)
+        cnt = 0;
+        for(int i = 0; i < arr.size(); i++) {
+            if(arr[i] == el) cnt++;
+        }
+
+        if(cnt > arr.size()/2) return el;
+
+        return -1;
+    }
+};

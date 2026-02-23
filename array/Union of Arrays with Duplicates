@@ -1,6 +1,6 @@
 // Problem: Union of Arrays with Duplicates
 // Platform: GFG
-// Time Complexity: O(n log(n+m)) + O(m log(n+m))
+// Time Complexity: O(n log(n+m)) + O(m log(n+m))      O(n + m) for unordered set
 // Space Complexity: O(n + m)
 
 class Solution {

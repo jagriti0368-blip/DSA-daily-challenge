@@ -1,0 +1,34 @@
+// Problem: Delete in a Singly Linked List
+// Platform: leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+
+
+class Solution {
+  public:
+    Node* deleteNode(Node* head, int x) {
+        // code here
+        Node* temp=head;
+         if (head == NULL) return head;
+             if (x == 1) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        return head;
+    }
+        while(temp!=NULL && temp->next!=NULL){
+            x--;
+            if(x==1){
+              Node*del=temp->next;
+              temp->next=temp->next->next; 
+              delete del;
+              break;
+                
+                
+            }
+            temp=temp->next;
+        }
+        return head;
+    }
+};

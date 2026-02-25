@@ -1,0 +1,32 @@
+// Problem: Longest Subarray with Majority Greater than K
+// Platform: GFG
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+class Solution {
+  public:
+    int longestSubarray(vector<int> &arr, int k) {
+        int n = arr.size();
+        vector<int> pref(n + 1, 0);
+        for (int i = 0; i < n; i++) {
+            int val = (arr[i] > k) ? 1 : -1;
+            pref[i + 1] = pref[i] + val;
+        }
+
+        stack<int> st;
+        for (int i = 0; i <= n; i++) {
+            if (st.empty() || pref[st.top()] > pref[i]) {
+                st.push(i);
+            }
+        }
+
+        int ans = 0;
+        for (int i = n; i >= 0; i--) {
+            while (!st.empty() && pref[st.top()] < pref[i]) {
+                ans = max(ans, i - st.top());
+                st.pop();
+            }
+        }
+        return ans;
+    }
+};

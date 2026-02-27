@@ -1,0 +1,31 @@
+// Problem: Check Equal Arrays
+// Platform: GFG
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+
+class Solution {
+  public:
+    bool checkEqual(vector<int>& a, vector<int>& b) {
+        if(a.size() != b.size()) 
+            return false;
+        
+        unordered_map<int,int> freq;
+        
+        // Count elements of array a
+        for(int i = 0; i < a.size(); i++){
+            freq[a[i]]++;
+        }
+        
+        // Subtract counts using array b
+        for(int i = 0; i < b.size(); i++){
+            freq[b[i]]--;
+            
+            // If element not found or count becomes negative
+            if(freq[b[i]] < 0)
+                return false;
+        }
+        
+        return true;
+    }
+};

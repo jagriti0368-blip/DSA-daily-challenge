@@ -1,0 +1,36 @@
+// Problem: valid parentheses
+// Platform: leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> st;
+        
+        for(char ch : s) {
+            // If opening bracket, push to stack
+            if(ch == '(' || ch == '{' || ch == '[') {
+                st.push(ch);
+            }
+            else {
+                // If stack is empty, no matching opening bracket
+                if(st.empty()) return false;
+                
+                char top = st.top();
+                st.pop();
+                
+                // Check matching pairs
+                if((ch == ')' && top != '(') ||
+                   (ch == '}' && top != '{') ||
+                   (ch == ']' && top != '[')) {
+                    return false;
+                }
+            }
+        }
+        
+        // If stack is empty, all brackets matched
+        return st.empty();
+    }
+};

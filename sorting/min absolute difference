@@ -6,7 +6,7 @@
 
 class Solution {
 public:
-    vector<vector<int>> minimumAbsDifference(vector<int>& arr) {
+    vector<vector<int>> minimumAbsDifference(vector<int>& arr) {    //2D
         vector<vector<int>>ans;
         int mini=INT_MAX;
         sort(arr.begin(),arr.end());

@@ -8,10 +8,10 @@ class Solution {
 public:
     long long totalSum = 0;
     long long ans = 0;
-    const int MOD = 1e9 + 7;
+    const int MOD = 1e9 + 7;     
     
 
-    // DFS to calculate subtree sums and max product
+   
     long long dfs(TreeNode* root) {
         if (!root) return 0;
 
@@ -20,13 +20,13 @@ public:
 
         long long subSum = root->val + left + right;
 
-        // assume edge above this node is removed
+
         long long product = subSum * (totalSum - subSum);
         ans = max(ans, product);
 
         return subSum;
     }
-     // helper to get total sum
+   
     long long dfsTotal(TreeNode* root) {
         if (!root) return 0;
         return root->val + dfsTotal(root->left) + dfsTotal(root->right);

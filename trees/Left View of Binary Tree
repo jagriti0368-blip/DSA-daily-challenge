@@ -1,7 +1,7 @@
 // Problem: left View of Binary Tree
 // Platform: GFG
 // Time Complexity: O(n)
-// Space Complexity: O(h)  
+// Space Complexity: O(h)   h=height
 
 class Solution {
   public:

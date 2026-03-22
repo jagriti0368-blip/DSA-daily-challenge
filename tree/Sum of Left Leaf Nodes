@@ -1,0 +1,24 @@
+// Problem: Sum of Left Leaf Nodes
+// Platform: GFG
+// Time Complexity: O(n)     using recursion
+// Space Complexity: O(h)    h=height of tree
+
+
+
+class Solution {
+  public:
+   int sum(Node* root,bool isleft){
+        if(root==NULL) return 0;
+        if(root->left==NULL && root->right==NULL){
+            if(isleft) return root->data;
+            else return 0;
+        }
+        return sum(root->left,true) + sum(root->right,false);
+        
+    }
+    int leftLeavesSum(Node* root) {
+        // Code here
+         return  sum(root,false);
+        
+    }
+};

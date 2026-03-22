@@ -1,6 +1,6 @@
 // Problem: Detect Loop in linked list
 // Platform: GFG
-// Approach: slow and fast pointer
+// Approach: using slow and fast pointer
 // Time Complexity: O(n)
 // Space Complexity: O(1)
 

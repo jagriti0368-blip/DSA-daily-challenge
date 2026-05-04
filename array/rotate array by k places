@@ -1,0 +1,15 @@
+// Problem: rotate array by k places
+// Platform: leetcode
+// Time Complexity: O(2n)
+// Space Complexity: O(1)
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+     int n=nums.size();
+      k=k % n;
+        reverse(&nums[0],&nums[n-k]);
+        reverse(&nums[n-k],&nums[n]);
+        reverse(&nums[0],&nums[n]);
+    }
+};

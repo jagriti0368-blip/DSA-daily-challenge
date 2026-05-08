@@ -5,19 +5,21 @@
 // Space Complexity: O(n)
 
 
-
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> mp;
-
-        for (int i = 0; i < nums.size(); i++) {
-            int need = target - nums[i];
-            if (mp.count(need)) {
-                return {mp[need], i};
-            }
-            mp[nums[i]] = i;
+        map<int,int>mpp;
+       for(int i=0;i<nums.size();i++){
+        int numss=nums[i];
+        int moreneeded=target-numss;
+        if(mpp.find(moreneeded) != mpp.end()){
+            return {mpp[moreneeded] , i};
         }
-        return {};
+         mpp[numss]=i;
+       }
+       return {-1,-1};
     }
 };
+
+
+

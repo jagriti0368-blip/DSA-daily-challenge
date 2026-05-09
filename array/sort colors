@@ -2,7 +2,7 @@
 // Platform: leetcode
 // Time Complexity: O(n)
 // Space Complexity: O(1)
-
+//approach: dutch national flag algo
 
 class Solution {
 public:
@@ -16,13 +16,16 @@ public:
                 low++;
                 mid++;
             }
-            else if(nums[mid]==1) mid++;
-            else{
-                swap(nums[mid],nums[high]);
+            else if(nums[mid]==1){
+                mid++;
+            } else{
+                swap(nums[high],nums[mid]);
                 high--;
             }
         }
-        
-        
+        return;     
     }
 };
+        
+        
+

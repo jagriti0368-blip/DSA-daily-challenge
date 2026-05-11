@@ -1,4 +1,4 @@
-// Problem: Kadane's Algorithm
+// Problem: Kadane's Algorithm (max subarray sum)
 // Platform: GFG
 // Time Complexity: O(n)
 // Space Complexity: O(1)

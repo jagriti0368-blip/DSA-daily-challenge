@@ -1,0 +1,27 @@
+// Problem: rearrange array elements by sign
+// Platform: leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        int n=nums.size();
+        vector<int>arr(n,0);
+        int posidx=0;
+        int negidx=1;
+        for(int i=0;i<nums.size();i++){
+           if(nums[i]>0){
+            arr[posidx]=nums[i];
+            posidx=posidx+2;
+           }
+           else{
+            arr[negidx]=nums[i];
+            negidx=negidx+2;
+           }
+        }
+        return arr;
+        
+    }
+};

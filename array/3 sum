@@ -2,6 +2,7 @@
 // Platform: leetcode
 // Time Complexity: O(n logn)+O(n*n)
 // Space Complexity: O(no. of triplets)
+// Approach : 2 pointers
 
 
 

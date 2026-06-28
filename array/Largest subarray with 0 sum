@@ -1,0 +1,30 @@
+// Problem: Largest subarray with 0 sum
+// Platform: GFG
+// Time Complexity: O(n log n)
+// Space Complexity: O(n)
+
+
+
+class Solution {
+  public:
+    int maxLength(vector<int>& arr) {
+        // code here
+        int sum=0;
+        int max_length=0;
+        map<int,int>mpp;
+        for(int i=0;i<arr.size();i++){
+          sum+=arr[i];
+          if(sum==0){
+              max_length=i+1;
+              
+          }
+          if(mpp.find(sum)!=mpp.end()){
+              max_length=max(max_length,i-mpp[sum]);
+          }
+          else{
+              mpp[sum]=i;
+          }
+        }
+        return max_length;
+    }
+};

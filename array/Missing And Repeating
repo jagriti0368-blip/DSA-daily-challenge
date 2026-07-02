@@ -1,0 +1,38 @@
+// Problem: Missing And Repeating
+// Platform: GFG
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+// Approach: maths
+
+
+class Solution {
+  public:
+    vector<int> findTwoElement(vector<int>& arr) {
+        // code here
+        long long n=arr.size();
+        long long X = -1;
+        long long Y = -1;
+        long long s=0;
+        long long sn=(n*(n+1))/2;
+        long long s2=0;
+        long long s2n=(n*(n+1)*(2*n+1))/6;
+        
+        for(int i=0 ; i<arr.size() ; i++){
+            s+=arr[i];
+            s2+=(long long)arr[i]*(long long)arr[i];
+        }
+        
+        long long val1=s-sn;
+        long long val2=s2-s2n;
+        val2=val2/val1;
+        
+        X = (val1+val2)/2;
+        Y = X-val1;
+        
+        
+        return{(int)X,(int)Y};
+        
+        
+        
+    }
+};

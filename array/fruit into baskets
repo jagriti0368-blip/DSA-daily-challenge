@@ -1,0 +1,32 @@
+// Problem: fruit into baskets
+// Platform: Leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+// Approach: sliding window , hashmap
+
+
+class Solution {
+public:
+    int totalFruit(vector<int>& fruits) {
+        int l=0 , r=0 , len = 0 , maxlen = 0;
+        int n=fruits.size();
+        map<int,int>mpp;
+        while(r<n){
+
+            mpp[fruits[r]]++;
+
+            if(mpp.size()<=2){
+               len=r-l+1;
+               maxlen=max(maxlen,len);  
+            }
+            if(mpp.size()>2){
+                mpp[fruits[l]]--;
+                if(mpp[fruits[l]]==0) mpp.erase(fruits[l]);
+                l++;
+            }
+            r++;
+        }
+        return maxlen;
+        
+    }
+};

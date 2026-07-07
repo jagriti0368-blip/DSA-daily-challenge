@@ -6,24 +6,25 @@
 
 class Solution {
 public:
-    int lengthOfLongestSubstring(string s) {
-        int l=0 ,r=0 , maxlen=0 ,len=0;
+    int characterReplacement(string s, int k) {
+        int l=0 , r=0 , len=0 , maxlen=0 , cnt=0, maxf=0;
         int n=s.size();
-        int hash[256];
-      for(int i = 0; i < 256; i++)
-       hash[i] = -1;
-
+        map<int,int>mpp;
         while(r<n){
-            if(hash[s[r]] != -1){
-                if(hash[s[r]] >= l){
-                    l=hash[s[r]] + 1;
-                }
-            }
+            mpp[s[r]]++;
+            maxf=max(maxf,mpp[s[r]]);   
             len=r-l+1;
-            maxlen=max(maxlen,len);
-            hash[s[r]]=r;
+            if(len-maxf<=k){
+                maxlen=max(maxlen,len);
+            }
+            if(len-maxf>k){
+                mpp[s[l]]--;
+                if(mpp[s[l]]==0) mpp.erase(s[l]);
+                l++;
+            }
             r++;
         }
-      return maxlen;  
+      return maxlen;
+        
     }
 };

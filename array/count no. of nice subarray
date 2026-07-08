@@ -1,0 +1,26 @@
+// Problem: count no. of nice subarray
+// Platform: Leetcode
+// Time Complexity: O(2*2n)
+// Space Complexity: O(1)
+// Approach: Sliding window
+
+class Solution {
+public:
+int numofSubarraylessthanequalto(vector<int> &nums,int k){
+     int l=0 , r=0 , cnt=0 , odd=0 ;
+        while(r<nums.size()){
+            if(nums[r]%2 != 0) odd++;
+            while(odd>k){
+                if(nums[l]%2 != 0) odd--;
+                l++;
+            }
+            cnt+=(r-l+1);
+            r++;       
+        }
+        return cnt;
+}
+
+    int numberOfSubarrays(vector<int>& nums, int k) {
+       return numofSubarraylessthanequalto(nums,k)-numofSubarraylessthanequalto(nums,k-1);
+    }
+};

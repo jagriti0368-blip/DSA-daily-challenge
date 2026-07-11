@@ -1,0 +1,38 @@
+// Problem: Longest Substring with K Uniques
+// Platform: GFG
+// Time Complexity: O(2n)
+// Space Complexity: O(n)
+// Approach: sliding window + map
+
+class Solution {
+  public:
+  int longestksubstratmost(string &s, int k){
+      int n=s.size();
+        int l=0 , r=0 , maxlen=-1;
+        map<int,int>mpp;
+        while(r<n){
+            mpp[s[r]]++;
+            if(mpp.size()==k){
+                maxlen=max(maxlen,r-l+1);
+                
+            }
+            
+            while(mpp.size()>k){
+                mpp[s[l]]--;
+                if(mpp[s[l]]==0) mpp.erase(s[l]);
+                l++;
+                
+            }
+            r++;
+            
+        }
+        return maxlen;
+    }
+      
+ 
+    int longestKSubstr(string &s, int k) {
+        // code here
+        return longestksubstratmost(s,k);
+    }
+        
+};

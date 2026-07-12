@@ -1,0 +1,37 @@
+// Problem: Minimum window substring
+// Platform: Leetcode
+// Time Complexity: O(2n) + O(m)
+// Space Complexity: O(256)
+// Approach: Sliding window + map
+
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        int l=0,r=0,minlen=INT_MAX,cnt=0;
+        int sidx=-1;
+        int m=s.size();
+        int n=t.size();
+        map<int,int>mpp;
+        for(int i=0 ; i<n ; i++){
+            mpp[t[i]]++;
+        }
+        while(r<m){
+           
+            if(mpp[s[r]]>0) cnt++;
+            mpp[s[r]]--;
+            while(cnt==n){
+                if(r-l+1 < minlen){
+                    minlen=min(minlen,r-l+1);
+                    sidx=l;
+                }
+                
+                mpp[s[l]]++;
+                if(mpp[s[l]]>0) cnt--;       
+                l++;
+            }
+           r++;
+        }
+        if(sidx==-1) return "";
+        return s.substr(sidx,minlen);
+    }
+};

@@ -1,0 +1,23 @@
+// Problem: sequential digits
+// Platform: Leetcode
+// Time Complexity: O(1)
+// Space Complexity: O(1)
+// Approach: observation
+
+class Solution {
+public:
+    vector<int> sequentialDigits(int low, int high) {
+        vector<int>arr;
+        for(int start=1 ; start<=9 ; start++){
+            int num=start;
+            for(int next=start+1 ; next<=9 ; next++){
+                num=num*10+next;
+                if(num>=low && num<=high){
+                    arr.push_back(num);
+                }
+            }
+        }
+        sort(arr.begin(),arr.end());
+        return arr;
+    }
+};

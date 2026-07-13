@@ -1,0 +1,24 @@
+// Problem: Assign cookies
+// Platform: Leetcode 
+// Time Complexity: O(n logn + m logm + m)
+// Space Complexity: O(1)
+
+class Solution {
+public:
+    int findContentChildren(vector<int>& g, vector<int>& s) {
+        int m=g.size();
+        int n=s.size();
+        int l=0,r=0,cnt=0;
+        if(s.size()==0 || g.size()==0) return cnt;
+        sort(g.begin(),g.end());
+        sort(s.begin(),s.end());
+        while(l<m && r<n){
+            if(g[l]<=s[r]){
+                cnt++;
+                l++;
+            }
+            r++;
+        }
+        return cnt;
+    }
+};

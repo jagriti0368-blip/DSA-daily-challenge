@@ -1,6 +1,6 @@
 // Problem: Assign cookies
 // Platform: Leetcode 
-// Time Complexity: O(n logn + m logm + m)
+// Time Complexity: O(n logn + m logm + m)     n and m are size of g and s
 // Space Complexity: O(1)
 
 class Solution {

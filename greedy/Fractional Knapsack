@@ -1,0 +1,32 @@
+// Problem: Fractional Knapsack
+// Platform: GFG
+// Time Complexity: O(n logn + n + n)
+// Space Complexity: O(n)
+
+class Solution {
+public:
+
+    static bool cmp(pair<int,int> &a, pair<int,int> &b) {
+        return (double)a.first / a.second > (double)b.first / b.second;
+    }
+    double fractionalKnapsack(vector<int>& val, vector<int>& wt, int capacity) {
+        vector<pair<int,int>> items;
+        for (int i = 0; i < val.size(); i++) {
+            items.push_back({val[i], wt[i]});
+        }
+        sort(items.begin(), items.end(), cmp);
+        double ans = 0;
+        for (auto &it : items) {
+
+            if (capacity >= it.second) {
+                ans += it.first;
+                capacity -= it.second;
+            }
+            else {
+                ans += ((double)it.first / it.second) * capacity;
+                break;
+            }
+        }
+        return ans;
+    }
+};

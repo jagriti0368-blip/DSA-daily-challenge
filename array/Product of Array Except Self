@@ -1,0 +1,23 @@
+// Problem: Product of Array Except Self
+// Platform: Leetcode
+// Time Complexity: O(2n)
+// Space Complexity: O(n)
+// Approach: Prefix Sum
+
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n=nums.size();
+        vector<int> ans(n,1);
+        int right=1;
+        for(int i=1;i<nums.size();i++){
+            ans[i]=nums[i-1]*ans[i-1];
+        }
+        for(int i=nums.size()-1; i>=0 ; i--){
+            ans[i]*=right;
+            right*=nums[i];
+        }
+        return ans; 
+    }
+};

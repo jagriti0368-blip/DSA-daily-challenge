@@ -1,0 +1,37 @@
+// Problem:  trapping rain water
+// Platform: Leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+// Approach: 2 pointer
+
+
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int leftmax=0,rightmax=0,ans=0;
+        int l=0;
+        int r=height.size()-1;
+        while(l<r){
+            if(height[l]<=height[r]){
+                if(leftmax>height[l]){
+                    ans+=leftmax-height[l];
+                }
+                else{
+                    leftmax=height[l];
+                }
+                l++;
+            }
+            if(height[l]>height[r]){
+                if(rightmax>height[r]){
+                    ans+=rightmax-height[r];
+                }
+                else{
+                    rightmax=height[r];
+                }
+                r--;
+            }
+        }
+        return ans;
+        
+    }
+};

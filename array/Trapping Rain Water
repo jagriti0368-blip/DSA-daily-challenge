@@ -1,0 +1,36 @@
+// Problem:  Trapping Rain Water 
+// Platform: GFG
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+// Approach: 2 pointer
+
+class Solution {
+  public:
+    int maxWater(vector<int> &arr) {
+        // code here
+        int leftmax=0,rightmax=0,ans=0;
+        int left=0;
+        int right=arr.size()-1;
+        while(left<right){
+            if(arr[left]<=arr[right]){
+                if(leftmax>arr[left]){
+                    ans+=leftmax-arr[left];
+                }
+                else{
+                    leftmax=arr[left];
+                }
+                left++;
+            }
+            if(arr[left]>arr[right]){
+                if(rightmax>arr[right]){
+                    ans+=rightmax-arr[right];
+                }
+                else{
+                    rightmax=arr[right];
+                }
+                right--;
+            }
+        }
+        return ans;
+    }
+};

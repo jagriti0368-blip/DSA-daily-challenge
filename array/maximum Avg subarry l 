@@ -1,0 +1,30 @@
+// Problem: maximum avg subarry 1
+// Platform: Leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(1) 
+// Approach: sliding window
+
+
+class Solution {
+public:
+    double findMaxAverage(vector<int>& nums, int k) {
+        int l=0,r=0;
+        double avg=0;
+        double sum=0;
+        double ans = INT_MIN;
+        int n= nums.size();
+        while(r<n){
+            sum+=nums[r];
+            if(r-l+1 >k){
+                sum-=nums[l];
+                l++;
+            }
+            if(r-l+1 == k){
+                avg=sum/k;
+                ans=max(ans,avg);
+            }
+            r++;
+        }
+        return ans;
+    }
+};

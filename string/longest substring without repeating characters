@@ -1,30 +1,25 @@
 // Problem:longest substring without repeating characters
 // Platform: leetcode
-// Time Complexity: O(n)
-// Space Complexity: O(1)
-//Approach: Sliding window , hashmap
+// Time Complexity: O(n log 26)=O(n)
+// Space Complexity: O(26)=O(1)
+//Approach: Sliding window , set
 
 class Solution {
 public:
-    int characterReplacement(string s, int k) {
-        int l=0 , r=0 , len=0 , maxlen=0 , cnt=0, maxf=0;
+    int lengthOfLongestSubstring(string s) {
+        int l=0 ,r=0 ;
         int n=s.size();
-        map<int,int>mpp;
+        int maxlen=0;
+        set<char>st;
         while(r<n){
-            mpp[s[r]]++;
-            maxf=max(maxf,mpp[s[r]]);   
-            len=r-l+1;
-            if(len-maxf<=k){
-                maxlen=max(maxlen,len);
-            }
-            if(len-maxf>k){
-                mpp[s[l]]--;
-                if(mpp[s[l]]==0) mpp.erase(s[l]);
+            while(st.find(s[r])!=st.end()){
+                st.erase(s[l]);
                 l++;
             }
+            st.insert(s[r]);
+            maxlen=max(maxlen,r-l+1);
             r++;
         }
-      return maxlen;
-        
+      return maxlen;  
     }
 };

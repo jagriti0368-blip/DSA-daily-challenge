@@ -1,0 +1,42 @@
+// Problem: reverse a LL 2
+// Platform: Leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+// Approach: in place reversal
+
+
+
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+
+        if (head == NULL || left == right)
+            return head;
+        ListNode* prev=nullptr;
+        ListNode* curr=head;
+         for (int i = 1; i < left; i++) {
+            prev=curr;
+            curr=curr->next;
+        } 
+        ListNode* before=prev;
+        ListNode* leftnode=curr;
+        prev=nullptr;
+        for (int i = left; i <=right; i++){
+            ListNode* front = curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=front;
+
+        } 
+         if(before!=nullptr){
+            before->next=prev;
+         }
+         else{
+            head=prev;
+         }
+         leftnode->next=curr;
+
+     return head;
+    }
+    
+};

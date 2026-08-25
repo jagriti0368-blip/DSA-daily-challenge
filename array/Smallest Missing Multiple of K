@@ -1,0 +1,22 @@
+// Problem: Smallest Missing Multiple of K
+// Platform: Leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+// Approach: unordered set
+
+
+class Solution {
+public:
+    int missingMultiple(vector<int>& nums, int k) {
+    
+    unordered_set<int> st(nums.begin(), nums.end());
+    int x = k;
+
+        while (st.count(x)) {
+            x += k;
+        }
+
+        return x;
+         
+    }
+};

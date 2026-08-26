@@ -1,0 +1,36 @@
+// Problem: Remove Duplicates from Sorted List II
+// Platform: Leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+// Approach: In place reversal
+
+
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+
+        ListNode* dummy = new ListNode(0);
+        dummy->next = head;
+
+        ListNode* prev = dummy;
+        ListNode* first = head;
+
+        while (first != NULL) {
+
+            ListNode* second = first->next;
+            if (second != NULL && first->val == second->val) {
+
+                while (second != NULL && first->val == second->val) {
+                    second = second->next;
+                }
+                prev->next = second;
+                first = second;
+            }
+            else {
+                prev = first;
+                first = first->next;
+            }
+        }
+        return dummy->next;
+    }
+};

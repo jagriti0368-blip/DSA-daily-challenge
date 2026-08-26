@@ -1,0 +1,43 @@
+// Problem: Palindrome Linked List
+// Platform: Leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+// Approach: reverse and middle element
+
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+
+        ListNode* prev = nullptr;
+        ListNode* temp = head;
+
+        while (temp != nullptr) {
+
+            ListNode* curr = temp->next;
+            temp->next = prev;
+            prev = temp;
+            temp = curr;
+        }
+        return prev;
+    }
+
+    bool isPalindrome(ListNode* head) {
+
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        
+        ListNode* temp1=head;
+        ListNode* temp2=reverseList(slow);
+        while(temp2!=NULL){
+            if(temp1->val!=temp2->val) return false;
+            temp1=temp1->next;
+            temp2=temp2->next;
+        }
+        return true;
+    }
+};

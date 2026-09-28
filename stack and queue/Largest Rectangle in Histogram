@@ -1,0 +1,36 @@
+// Problem:  Largest Rectangle in Histogram
+// Platform: Leetcode
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+// Approach: Monotonic stack
+
+
+
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        stack<int>st;
+        int maxarea=0;
+        int element,nse,pse;
+        for(int i=0 ; i<heights.size() ; i++){
+
+           while(!st.empty() && heights[i]<heights[st.top()]){
+            element=st.top();
+            st.pop();
+            nse=i;
+            pse=st.empty()?-1:st.top();
+            maxarea=max(maxarea,heights[element]*(nse-pse-1));
+           }
+           st.push(i);
+        }
+        while(!st.empty()){
+            nse=heights.size();
+            element=st.top();
+            st.pop();
+            pse=st.empty()?-1:st.top();
+           
+            maxarea=max(maxarea,heights[element]*(nse-pse-1));
+           }
+       return maxarea; 
+    }
+};
